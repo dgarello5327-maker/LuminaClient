@@ -10,6 +10,7 @@ import com.project.lumina.client.constructors.GameManager
 import com.project.lumina.client.game.InterceptablePacket
 import com.project.lumina.client.game.world.chunk.Chunk
 import com.project.lumina.client.render.ESPRenderOverlayView
+import com.project.lumina.client.game.module.api.setting.stringValue
 import org.cloudburstmc.math.matrix.Matrix4f
 import org.cloudburstmc.math.vector.Vector2f
 import org.cloudburstmc.math.vector.Vector3f
@@ -64,7 +65,6 @@ open class BlockESPElement(
         if (!ESPElementActive()) {
             renderView?.let { ESPRenderOverlayView.dismissOverlay(it) }
             renderView = null
-            ESPElement.setRenderView(null)
         }
     }
 
@@ -72,7 +72,7 @@ open class BlockESPElement(
         GameManager.elements.any { it is ESPElement && it.isEnabled && it.isSessionCreated }
 
     private fun scanBlocks() {
-        if (!isSessionCreated || !::session.isInitialized || !::session.blockMapping.isInitialized) return
+        if (!isSessionCreated || !session::blockMapping.isInitialized) return
 
         val p = session.localPlayer.vec3Position
         val centerX = p.x.toInt()
