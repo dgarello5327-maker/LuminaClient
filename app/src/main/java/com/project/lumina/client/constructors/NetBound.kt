@@ -226,17 +226,14 @@ class NetBound(val luminaRelaySession: LuminaRelaySession) : ComposedPacketHandl
                         PresenceStateManager.onGameJoined(serverIp)
                     }
 
-                    /**
                     try {
-                    blockMapping = blockMappingProvider.craftMapping(protocolVersion)
-                    itemMapping = itemMappingProvider.craftMapping(protocolVersion)
-                    legacyBlockMapping = legacyBlockMappingProvider.craftMapping(protocolVersion)
-
-                    Log.i("GameSession", "Loaded mappings for protocol $protocolVersion")
+                        blockMapping = blockMappingProvider.craftMapping(protocolVersion)
+                        itemMapping = itemMappingProvider.craftMapping(protocolVersion)
+                        legacyBlockMapping = legacyBlockMappingProvider.craftMapping(protocolVersion)
+                        Log.i("GameSession", "Loaded mappings for protocol $protocolVersion")
                     } catch (e: Exception) {
-                    Log.e("GameSession", "Failed to load mappings for protocol $protocolVersion", e)
+                        Log.e("GameSession", "Failed to load mappings for protocol $protocolVersion", e)
                     }
-                     */
                 }
             }
 
