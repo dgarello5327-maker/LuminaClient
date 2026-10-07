@@ -64,6 +64,9 @@ import com.project.lumina.client.game.module.impl.motion.StepElement
 import com.project.lumina.client.game.module.impl.visual.AntiBlindElement
 import com.project.lumina.client.game.module.impl.visual.ESPElement
 import com.project.lumina.client.game.module.impl.visual.BlockESPElement
+import com.project.lumina.client.game.module.impl.visual.StorageESPElement
+import com.project.lumina.client.game.module.impl.visual.ChestESPElement
+import com.project.lumina.client.game.module.impl.visual.SpawnerESPElement
 import com.project.lumina.client.game.module.impl.visual.FreeCameraElement
 import com.project.lumina.client.game.module.impl.visual.FullBrightElement
 import com.project.lumina.client.game.module.impl.visual.NameTagElement
@@ -166,6 +169,9 @@ object GameManager {
                 add(AntiBlindElement())
                 add(ESPElement())
                 add(BlockESPElement())
+                add(StorageESPElement())
+                add(ChestESPElement())
+                add(SpawnerESPElement())
                 add(EntityRadarElement())
 
             }
