@@ -101,6 +101,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import android.widget.Toast
 import com.project.lumina.client.R
 import com.project.lumina.client.constructors.AccountManager
+import com.project.lumina.client.model.CaptureModeModel
 import com.project.lumina.client.util.InjectNeko
 import com.project.lumina.client.util.MCPackUtils
 import com.project.lumina.client.util.ServerInit
@@ -1232,8 +1233,48 @@ fun RealmsView(
                                     if (error != null) {
                                         statusMessage = "Error joining Realm: $error"
                                     } else if (address != null) {
-                                        realmAddresses = realmAddresses + (world.id.toInt() to address)
-                                        statusMessage = "Joined Realm: ${world.name}"
+                                        val endpoint = parseRealmEndpoint(address)
+                                        if (endpoint == null) {
+                                            statusMessage = "Unsupported Realm endpoint: $address"
+                                        } else if (Services.isActive) {
+                                            statusMessage = "Stop the current proxy before joining a Realm"
+                                        } else {
+                                            val (host, port) = endpoint
+                                            realmAddresses = realmAddresses + (world.id.toInt() to "$host:$port")
+                                            mainScreenViewModel.selectCaptureModeModel(
+                                                CaptureModeModel(host, port)
+                                            )
+                                            statusMessage = "Starting proxy for Realm: ${world.name} ($host:$port)"
+                                            onStartToggle()
+
+                                            scope.launch {
+                                                repeat(40) {
+                                                    if (Services.isActive) return@repeat
+                                                    delay(250)
+                                                }
+
+                                                if (Services.isActive) {
+                                                    try {
+                                                        val selectedGame = mainScreenViewModel.selectedGame.value
+                                                        if (selectedGame != null) {
+                                                            val intent = context.packageManager.getLaunchIntentForPackage(selectedGame)
+                                                            if (intent != null) {
+                                                                context.startActivity(intent)
+                                                                delay(2500)
+                                                                ServerInit.addMinecraftServer(context, localIp)
+                                                                statusMessage = "Realm ready: ${world.name}"
+                                                            } else {
+                                                                statusMessage = "Minecraft Bedrock is not installed"
+                                                            }
+                                                        }
+                                                    } catch (e: Exception) {
+                                                        statusMessage = "Failed to launch Realm: ${e.message}"
+                                                    }
+                                                } else {
+                                                    statusMessage = "Proxy failed to start for Realm: ${world.name}"
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                             },
@@ -1335,6 +1376,27 @@ fun RealmCard(
             }
         }
     }
+}
+
+private fun parseRealmEndpoint(address: String): Pair<String, Int>? {
+    val value = address.trim()
+    if (value.matches(Regex("^[0-9a-fA-F-]{36}$"))) {
+        return null
+    }
+
+    val lastColon = value.lastIndexOf(':')
+    if (lastColon <= 0 || lastColon == value.lastIndex) {
+        return null
+    }
+
+    val host = value.substring(0, lastColon).removePrefix("[").removeSuffix("]")
+    val port = value.substring(lastColon + 1).toIntOrNull() ?: return null
+
+    if (host.isBlank() || port !in 1..65535) {
+        return null
+    }
+
+    return host to port
 }
 
 private fun loadRealmsSession(
