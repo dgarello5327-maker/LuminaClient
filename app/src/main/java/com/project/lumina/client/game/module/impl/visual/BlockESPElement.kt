@@ -6,6 +6,7 @@ import android.graphics.Paint
 import com.project.lumina.client.R
 import com.project.lumina.client.constructors.CheatCategory
 import com.project.lumina.client.constructors.Element
+import com.project.lumina.client.constructors.GameManager
 import com.project.lumina.client.game.InterceptablePacket
 import com.project.lumina.client.game.world.chunk.Chunk
 import com.project.lumina.client.render.ESPRenderOverlayView
