@@ -140,6 +140,8 @@ class NetBound(val luminaRelaySession: LuminaRelaySession) : ComposedPacketHandl
     lateinit var blockMapping: BlockMapping
     lateinit var itemMapping: ItemMapping
     lateinit var legacyBlockMapping: LegacyBlockMapping
+    val hasBlockMapping: Boolean
+        get() = ::blockMapping.isInitialized
 
     private var startGameReceived = false
     private val pendingPackets = mutableListOf<BedrockPacket>()
