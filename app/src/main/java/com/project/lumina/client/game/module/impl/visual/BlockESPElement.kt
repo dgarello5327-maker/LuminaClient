@@ -72,7 +72,7 @@ open class BlockESPElement(
         GameManager.elements.any { it is ESPElement && it.isEnabled && it.isSessionCreated }
 
     private fun scanBlocks() {
-        if (!isSessionCreated || !session::blockMapping.isInitialized) return
+        if (!isSessionCreated || !session.hasBlockMapping) return
 
         val p = session.localPlayer.vec3Position
         val centerX = p.x.toInt()
