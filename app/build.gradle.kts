@@ -6,8 +6,6 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.lombok)
     kotlin("plugin.serialization") version libs.versions.kotlin
-    id("com.google.gms.google-services")
-    id("com.google.firebase.crashlytics")
 }
 
 android {
@@ -103,7 +101,6 @@ android {
 
 dependencies {
     implementation(libs.leveldb)
-    //implementation("com.github.CloudburstMC:NBT:master-SNAPSHOT")
     implementation(libs.ui.graphics)
     implementation(libs.androidx.compose.material)
     implementation(libs.androidx.foundation.android)
