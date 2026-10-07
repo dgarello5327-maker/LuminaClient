@@ -114,7 +114,10 @@ class LaunchActivity : ComponentActivity() {
         val verifier = HashCat.getInstance()
         val isValid = verifier.LintHashInit(this)
         if (isValid) {
-            FirebaseCrashlytics.getInstance().log("App started")
+            // Firebase is optional in this fork. Do not crash if google-services.json is absent.
+            runCatching {
+                FirebaseCrashlytics.getInstance().log("App started")
+            }
         }
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
