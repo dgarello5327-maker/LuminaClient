@@ -17,8 +17,11 @@ import org.cloudburstmc.protocol.bedrock.packet.PlayerAuthInputPacket
 import kotlin.math.cos
 import kotlin.math.sin
 
-class BlockESPElement : Element(
-    name = "blockesp",
+open class BlockESPElement(
+    private val defaultMode: String = "Ores",
+    moduleName: String = "blockesp"
+) : Element(
+    name = moduleName,
     category = CheatCategory.Visual,
     displayNameResId = R.string.esp_module_name
 ) {
@@ -27,7 +30,7 @@ class BlockESPElement : Element(
         fun setRenderView(view: ESPRenderOverlayView?) { renderView = view }
     }
 
-    private val mode by stringValue("Mode", "Ores", listOf("Ores", "Storage", "Spawners", "Xray"))
+    private val mode by stringValue("Mode", defaultMode, listOf("Ores", "Storage", "Spawners", "Xray"))
     private val range by intValue("Range", 12, 4..24)
     private val maxBlocks by intValue("Max Blocks", 180, 20..500)
 
