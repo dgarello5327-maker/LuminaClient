@@ -8,6 +8,7 @@ import android.view.WindowManager
 import com.project.lumina.client.application.AppContext
 import com.project.lumina.client.constructors.GameManager
 import com.project.lumina.client.game.module.impl.visual.ESPElement
+import com.project.lumina.client.game.module.impl.visual.BlockESPElement
 
 class ESPRenderOverlayView(context: Context) : View(context) {
 
@@ -33,7 +34,12 @@ class ESPRenderOverlayView(context: Context) : View(context) {
 
         activeESPModules.forEach { it.render(canvas) }
 
-        if (activeESPModules.isNotEmpty()) {
+        val activeBlockESP = GameManager.elements
+            .filterIsInstance<BlockESPElement>()
+            .filter { it.isEnabled && it.isSessionCreated }
+        activeBlockESP.forEach { it.render(canvas) }
+
+        if (activeESPModules.isNotEmpty() || activeBlockESP.isNotEmpty()) {
             postInvalidateOnAnimation()
         }
     }
