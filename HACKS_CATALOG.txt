@@ -7,6 +7,9 @@ COMBAT
 - AutoArmor
 - AutoCrystal
 - AutoTotem
+- AutoAim
+- AimAssist
+- AutoEat
 - CritBot
 - DamageBoost
 - Hitbox
@@ -19,6 +22,7 @@ COMBAT
 - TPAura
 - TriggerBot
 - Velocity
+- NoFall
 
 MOTION
 - AirJump
@@ -60,6 +64,8 @@ WORLD
 - AutoWalk
 - AutoXP
 - ChestStealer
+- AutoMine
+- Macro
 - FollowBot
 - Haste
 - InvHelper
