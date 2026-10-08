@@ -1,0 +1,113 @@
+LUMINA CLIENT — HACK CATALOG
+================================
+Search: use the search field in this file/repository. Each entry is one module.
+
+COMBAT
+- AntiCrystal
+- AutoArmor
+- AutoCrystal
+- AutoTotem
+- CritBot
+- DamageBoost
+- Hitbox
+- InfiniteAura
+- Killaura
+- LockHeed
+- OpFightBot
+- QuickAttack
+- Reach
+- TPAura
+- TriggerBot
+- Velocity
+
+MOTION
+- AirJump
+- AntiAFK
+- AntiAcFly
+- Bhop
+- FarSight
+- Fly
+- FullStop
+- Glide
+- HighJump
+- JetPack
+- JitterFly
+- LongJump
+- MotionFly
+- MotionVar
+- Speed
+- Spider
+- Sprint
+- Step
+
+VISUAL
+- AntiBlind
+- BlockESP
+- ChestESP
+- ESP
+- FreeCamera
+- FullBright
+- NameTag
+- NightVision
+- NoFire
+- NoHurtCamera
+- SpawnerESP
+- StorageESP
+- Zoom
+
+WORLD
+- AutoNavigator
+- AutoWalk
+- AutoXP
+- ChestStealer
+- FollowBot
+- Haste
+- InvHelper
+- Jesus
+- Minimap
+- NoClip
+- Phase
+- ShulkerNesting
+- Strafe
+- WorldDebugger
+- WorldSave
+- WorldSaveTester
+
+MISC
+- AntiKick
+- ArrayList
+- Blinder
+- CoordSnatcher
+- Crasher
+- DeathTracker
+- Desync
+- EntityRadar
+- KeyStrokes
+- ModalDialog
+- PingSpoof
+- PlayerTracer
+- PositionLogger
+- Replay
+- SessionInfo
+- SpamXP
+- SpeedoMeter
+- TargetHud
+- TimeShift
+- ToggleSound
+- WaterMark
+- WeatherController
+
+SEARCH ALIASES
+- crystal -> AutoCrystal, AntiCrystal
+- totem -> AutoTotem
+- esp -> ESP, BlockESP, ChestESP, SpawnerESP, StorageESP, EntityRadar
+- fly -> Fly, MotionFly, JitterFly, AntiAcFly
+- jump -> AirJump, HighJump, LongJump, Bhop
+- vision -> FullBright, NightVision, AntiBlind, FreeCamera
+- movement -> Speed, Sprint, Step, Spider, Glide, Strafe, Phase
+- inventory -> AutoArmor, AutoTotem, InvHelper, ChestStealer, ShulkerNesting
+- combat -> Killaura, AutoCrystal, AutoTotem, Reach, TPAura, TriggerBot, Velocity
+- world -> AutoNavigator, AutoWalk, AutoXP, ChestStealer, Jesus, Minimap, NoClip, Phase
+
+STATUS
+This catalog reflects the modules currently present in the repository tree. It is an index only; it does not claim that every module is enabled, server-compatible, or fully tested on every Bedrock version.
