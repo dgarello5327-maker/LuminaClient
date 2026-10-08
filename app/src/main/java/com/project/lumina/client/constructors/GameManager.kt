@@ -36,6 +36,7 @@ import com.project.lumina.client.game.module.impl.motion.AirJumpElement
 import com.project.lumina.client.game.module.impl.motion.AntiAFKElement
 import com.project.lumina.client.game.module.impl.world.AutoWalkElement
 import com.project.lumina.client.game.module.impl.world.ChestStealerElement
+import com.project.lumina.client.game.module.impl.world.ShulkerNestingElement
 import com.project.lumina.client.game.module.impl.world.InvHelperElement
 import com.project.lumina.client.game.module.impl.motion.BhopElement
 import com.project.lumina.client.game.module.impl.combat.DamageBoostElement
