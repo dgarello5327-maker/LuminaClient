@@ -20,6 +20,8 @@ import com.project.lumina.client.game.module.impl.misc.CrasherElement
 import com.project.lumina.client.game.module.impl.misc.DesyncElement
 import com.project.lumina.client.game.module.impl.combat.AutoTotemElement
 import com.project.lumina.client.game.module.impl.combat.AutoCrystalElement
+import com.project.lumina.client.game.module.impl.combat.AutoAimElement
+import com.project.lumina.client.game.module.impl.combat.AimAssistElement
 import com.project.lumina.client.game.module.impl.combat.AutoArmorElement
 
 import com.project.lumina.client.game.module.impl.world.NoClipElement
