@@ -55,24 +55,37 @@ class ShulkerNestingElement : Element(
         if (depth >= maxDepth) return ScanResult(0, depth)
         val tag = item.tag ?: return ScanResult(0, depth)
         val items = findItemsList(tag) ?: return ScanResult(0, depth)
+        return inspectEntries(items, depth)
+    }
+
+    private fun inspectEntries(
+        items: List<org.cloudburstmc.nbt.NbtMap>,
+        depth: Int
+    ): ScanResult {
         var count = 0
         var deepest = depth
+
         items.forEach { entry ->
-            val identifier = entry.getString("Name", "").ifEmpty { entry.getString("name", "") }.lowercase()
-            if (identifier.contains("shulker_box")) {
-                count++
-                deepest = maxOf(deepest, depth + 1)
+            val identifier = entry.getString("Name", "")
+                .ifEmpty { entry.getString("name", "") }
+                .lowercase()
+
+            if (!identifier.contains("shulker_box")) return@forEach
+
+            count++
+            deepest = maxOf(deepest, depth + 1)
+
+            if (depth + 1 < maxDepth) {
                 val nestedTag = entry.getCompound("tag")
                 val nestedItems = nestedTag?.let { findItemsList(it) }
-                nestedItems?.forEach { nestedEntry ->
-                    val nestedName = nestedEntry.getString("Name", "").ifEmpty { nestedEntry.getString("name", "") }.lowercase()
-                    if (nestedName.contains("shulker_box")) {
-                        count++
-                        deepest = maxOf(deepest, depth + 2)
-                    }
+                if (nestedItems != null) {
+                    val nested = inspectEntries(nestedItems, depth + 1)
+                    count += nested.count
+                    deepest = maxOf(deepest, nested.depth)
                 }
             }
         }
+
         return ScanResult(count, deepest)
     }
 
