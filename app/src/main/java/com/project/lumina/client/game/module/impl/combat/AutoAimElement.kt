@@ -6,6 +6,7 @@ import com.project.lumina.client.constructors.Element
 import com.project.lumina.client.game.InterceptablePacket
 import com.project.lumina.client.game.entity.Entity
 import com.project.lumina.client.game.entity.LocalPlayer
+import com.project.lumina.client.game.entity.Player
 import org.cloudburstmc.math.vector.Vector3f
 import org.cloudburstmc.protocol.bedrock.packet.PlayerAuthInputPacket
 import kotlin.math.atan2
@@ -36,7 +37,7 @@ class AutoAimElement : Element(
 
     private fun findTarget(): Entity? =
         session.level.entityMap.values
-            .filter { it !is LocalPlayer && it.isValid() && it.distance(session.localPlayer) <= range }
-            .filter { !playersOnly || it is com.project.lumina.client.game.entity.Player }
+            .filter { it !is LocalPlayer && it.distance(session.localPlayer) <= range }
+            .filter { !playersOnly || it is Player }
             .minByOrNull { it.distance(session.localPlayer) }
 }
