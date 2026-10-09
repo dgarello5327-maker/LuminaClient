@@ -41,6 +41,6 @@ class AimAssistElement : Element(
 
     private fun findTarget(): Entity? =
         session.level.entityMap.values
-            .filter { it !is LocalPlayer && it.distance(session.localPlayer) <= range && it.isValid() }
+            .filter { it !is LocalPlayer && it.distance(session.localPlayer) <= range }
             .minByOrNull { it.distance(session.localPlayer) }
 }
