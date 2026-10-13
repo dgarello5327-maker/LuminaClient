@@ -146,6 +146,7 @@ object GameManager {
             add(ChestStealerElement())
             add(InvHelperElement())
             add(AutoTotemElement())
+            add(AutoCrystalElement())
             add(CrasherElement())
             add(AutoXPElement())
             add(SpamXPElement())
